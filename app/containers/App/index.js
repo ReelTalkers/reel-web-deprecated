@@ -24,9 +24,6 @@ function App(props) {
   return (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
       <div className={styles.wrapper}>
-        <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-          <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-        </A>
         {props.children}
         <Footer />
       </div>

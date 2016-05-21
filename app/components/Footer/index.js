@@ -7,10 +7,10 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <section>
-        <p>This project is licensed under the MIT license.</p>
+        <p>The social network for movies and television.</p>
       </section>
       <section>
-        <p>Made with love by <A href="https://twitter.com/mxstbr">Max Stoiber</A>.</p>
+        <p>Reel, Inc.</p>
       </section>
     </footer>
   )
