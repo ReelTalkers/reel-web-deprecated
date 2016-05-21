@@ -7,7 +7,7 @@
     "url": "git://github.com/reeltalkers/reel-web.git"
   },
   "author": "Greg Ziegan <greg.ziegan@gmail.com>; Craig Day <craigday3@gmail.com",
-  "license": "GPL",
+  "license": "GNU GPLv3",
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
     "build:clean": "rimraf ./build/*",
@@ -48,7 +48,9 @@
     ],
     "env": {
       "production": {
-        "only": ["app"],
+        "only": [
+          "app"
+        ],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
@@ -79,22 +81,40 @@
     },
     "rules": {
       "import/no-unresolved": 2,
-      "comma-dangle": [2, "always-multiline"],
-      "indent": [2, 2, { "SwitchCase": 1 }],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 1,
       "max-len": 0,
       "prefer-template": 2,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
       "jsx-a11y/href-no-hash": 2,
       "jsx-a11y/label-has-for": 2,
       "jsx-a11y/mouse-events-have-key-events": 2,
       "jsx-a11y/role-has-required-aria-props": 2,
       "jsx-a11y/role-supports-aria-props": 2,
       "jsx-a11y/aria-props": 2,
-      "semi": [2, "never"],
-      "comma-style": ["error", "first"]
+      "semi": [
+        2,
+        "never"
+      ],
+      "comma-style": [
+        "error",
+        "first"
+      ]
     },
     "settings": {
       "import/resolver": {
@@ -136,6 +156,7 @@
     "fontfaceobserver": "^1.7.1",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
+    "material-ui": "^0.15.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-pure-render": "^1.0.2",
@@ -143,6 +164,7 @@
     "react-router": "^2.3.0",
     "react-router-redux": "^4.0.4",
     "react-router-scroll": "^0.2.0",
+    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "redux-immutable": "^3.0.6",
     "redux-saga": "^0.10.0",
@@ -218,7 +240,7 @@
     "stylelint": "^6.3.3",
     "stylelint-config-standard": "^7.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.1.0-beta.6",
+    "webpack": "^2.1.0-beta.7",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
   }

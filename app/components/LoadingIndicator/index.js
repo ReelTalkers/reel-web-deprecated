@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 function LoadingIndicator() {
   return (
@@ -20,7 +20,7 @@ function LoadingIndicator() {
         <div className={styles['sk-circle12']}></div>
       </div>
     </div>
-  );
+  )
 }
 
-export default LoadingIndicator;
+export default LoadingIndicator

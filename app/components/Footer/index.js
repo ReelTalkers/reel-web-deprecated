@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import A from 'components/A';
-import styles from './styles.css';
+import A from 'components/A'
+import styles from './styles.css'
 
 function Footer() {
   return (
@@ -13,7 +13,7 @@ function Footer() {
         <p>Made with love by <A href="https://twitter.com/mxstbr">Max Stoiber</A>.</p>
       </section>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

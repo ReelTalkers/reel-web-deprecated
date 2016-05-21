@@ -4,37 +4,38 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import shouldPureComponentUpdate from 'react-pure-render/function';
+import React from 'react'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+import shouldPureComponentUpdate from 'react-pure-render/function'
 
-import { createSelector } from 'reselect';
+import { createSelector } from 'reselect'
 
 import {
   selectRepos,
   selectLoading,
   selectError,
-} from 'containers/App/selectors';
+} from 'containers/App/selectors'
 
 import {
   selectUsername,
-} from './selectors';
+} from './selectors'
 
-import { changeUsername } from './actions';
-import { loadRepos } from '../App/actions';
+import { changeUsername } from './actions'
+import { loadRepos } from '../App/actions'
 
-import RepoListItem from 'containers/RepoListItem';
-import Button from 'components/Button';
-import H2 from 'components/H2';
-import List from 'components/List';
-import ListItem from 'components/ListItem';
-import LoadingIndicator from 'components/LoadingIndicator';
+import RepoListItem from 'containers/RepoListItem'
+import Button from 'components/Button'
+import H2 from 'components/H2'
+import List from 'components/List'
+import ListItem from 'components/ListItem'
+import LoadingIndicator from 'components/LoadingIndicator'
+import SearchBar from 'components/SearchBar'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 export class HomePage extends React.Component {
-  shouldComponentUpdate = shouldPureComponentUpdate;
+  shouldComponentUpdate = shouldPureComponentUpdate
 
   /**
    * Changes the route
@@ -42,39 +43,40 @@ export class HomePage extends React.Component {
    * @param  {string} route The route we want to go to
    */
   openRoute = (route) => {
-    this.props.changeRoute(route);
-  };
+    this.props.changeRoute(route)
+  }
 
   /**
    * Changed route to '/features'
    */
   openFeaturesPage = () => {
-    this.openRoute('/features');
-  };
+    this.openRoute('/features')
+  }
 
   render() {
-    let mainContent = null;
+    let mainContent = null
 
     // Show a loading indicator when we're loading
     if (this.props.loading) {
-      mainContent = (<List component={LoadingIndicator} />);
+      mainContent = (<List component={LoadingIndicator} />)
 
     // Show an error if there is one
     } else if (this.props.error !== false) {
       const ErrorComponent = () => (
         <ListItem content={'Something went wrong, please try again!'} />
-      );
-      mainContent = (<List component={ErrorComponent} />);
+      )
+      mainContent = (<List component={ErrorComponent} />)
 
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} component={RepoListItem} />);
+      mainContent = (<List items={this.props.repos} component={RepoListItem} />)
     }
 
     return (
       <article>
         <div>
           <section className={`${styles.textSection} ${styles.centered}`}>
+            <SearchBar results={[]} onUpdateInput={() => {}}/>
             <H2>Start your next react project in seconds</H2>
             <p>A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices</p>
           </section>
@@ -98,7 +100,7 @@ export class HomePage extends React.Component {
           <Button handleRoute={this.openFeaturesPage}>Features</Button>
         </div>
       </article>
-    );
+    )
   }
 }
 
@@ -116,19 +118,19 @@ HomePage.propTypes = {
   onSubmitForm: React.PropTypes.func,
   username: React.PropTypes.string,
   onChangeUsername: React.PropTypes.func,
-};
+}
 
 function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
     onSubmitForm: (evt) => {
-      evt.preventDefault();
-      dispatch(loadRepos());
+      evt.preventDefault()
+      dispatch(loadRepos())
     },
 
     dispatch,
-  };
+  }
 }
 
 // Wrap the component to inject dispatch and state into it
@@ -138,4 +140,4 @@ export default connect(createSelector(
   selectLoading(),
   selectError(),
   (repos, username, loading, error) => ({ repos, username, loading, error })
-), mapDispatchToProps)(HomePage);
+), mapDispatchToProps)(HomePage)
