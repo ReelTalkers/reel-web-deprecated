@@ -4,26 +4,31 @@
 *
 */
 
-import React from 'react'
+import React, { PropTypes as T } from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
 
 import styles from './styles.css'
 
 function SearchBar(props) {
   return (
-    <div className={ styles.searchBar }>
+    <div className={styles.searchBar}>
       <AutoComplete
         hintText="Search..."
-        dataSource={ props.results }
-        onUpdateInput={ props.onUpdateInput }
-        />
+        dataSource={props.results}
+        onUpdateInput={props.onUpdateInput}
+      />
     </div>
   )
 }
 
-SearchBar.defaultProps = {
-  results: [],
-  onUpdateInput: () => {},
+SearchBar.propTypes =
+  { results: T.array
+  , onUpdateInput: T.func
+  }
+
+SearchBar.defaultProps =
+{ results: []
+, onUpdateInput: () => {}
 }
 
 export default SearchBar

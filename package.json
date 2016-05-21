@@ -83,7 +83,7 @@
       "import/no-unresolved": 2,
       "comma-dangle": [
         2,
-        "always-multiline"
+        "never"
       ],
       "indent": [
         2,
@@ -112,7 +112,7 @@
         "never"
       ],
       "comma-style": [
-        "error",
+        "warn",
         "first"
       ]
     },

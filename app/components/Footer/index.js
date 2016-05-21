@@ -10,7 +10,7 @@ function Footer() {
         <p>The social network for movies and television.</p>
       </section>
       <section>
-        <p>Reel, Inc.</p>
+        <p><A href="https://github.com/ReelTalkers/" target="_blank">Reel, Inc.</A></p>
       </section>
     </footer>
   )

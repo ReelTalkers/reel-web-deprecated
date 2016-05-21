@@ -2,36 +2,36 @@
 
 /* eslint-disable */
 
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
 
-var ngrok = require('ngrok');
-var psi = require('psi');
-var chalk = require('chalk');
+var ngrok = require('ngrok')
+var psi = require('psi')
+var chalk = require('chalk')
 
-log('\nStarting ngrok tunnel');
+log('\nStarting ngrok tunnel')
 
-startTunnel(runPsi);
+startTunnel(runPsi)
 
 function runPsi(url) {
-  log('\nStarting PageSpeed Insights');
+  log('\nStarting PageSpeed Insights')
   psi.output(url).then(function (err) {
-    process.exit(0);
-  });
+    process.exit(0)
+  })
 }
 
 function startTunnel(cb) {
   ngrok.connect(3000, function (err, url) {
     if (err) {
-      log(chalk.red('\nERROR\n' + err));
-      process.exit(0);
+      log(chalk.red('\nERROR\n' + err))
+      process.exit(0)
     }
 
-    log('\nServing tunnel from: ' + chalk.magenta(url));
-    cb(url);
-  });
+    log('\nServing tunnel from: ' + chalk.magenta(url))
+    cb(url)
+  })
 }
 
 function log(string) {
-  process.stdout.write(string);
+  process.stdout.write(string)
 }

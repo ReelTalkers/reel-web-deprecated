@@ -21,12 +21,6 @@ import {
   selectUsername,
 } from './selectors'
 
-import { changeUsername } from './actions'
-import { loadRepos } from '../App/actions'
-
-import RepoListItem from 'containers/RepoListItem'
-import Button from 'components/Button'
-import H2 from 'components/H2'
 import List from 'components/List'
 import ListItem from 'components/ListItem'
 import LoadingIndicator from 'components/LoadingIndicator'
@@ -46,13 +40,6 @@ export class HomePage extends React.Component {
     this.props.changeRoute(route)
   }
 
-  /**
-   * Changed route to '/features'
-   */
-  openFeaturesPage = () => {
-    this.openRoute('/features')
-  }
-
   render() {
     let mainContent = null
 
@@ -66,51 +53,37 @@ export class HomePage extends React.Component {
         <ListItem content={'Something went wrong, please try again!'} />
       )
       mainContent = (<List component={ErrorComponent} />)
-
-    // If we're not loading, don't have an error and there are repos, show the repos
-    } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} component={RepoListItem} />)
     }
 
     return (
       <article>
         <section>
-            <SearchBar results={[]} onUpdateInput={() => {}}/>
-          </section>
-          <section>
-            {mainContent}
-          </section>
+          <SearchBar
+            results={[]}
+            onUpdateInput={() => {}}
+          />
+        </section>
+        <section>
+          {mainContent}
+        </section>
       </article>
     )
   }
 }
 
-HomePage.propTypes = {
-  changeRoute: React.PropTypes.func,
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  repos: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  onSubmitForm: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+HomePage.propTypes =
+  { changeRoute: React.PropTypes.func
+  , loading: React.PropTypes.bool
+  , error: React.PropTypes.oneOfType(
+    [ React.PropTypes.object
+    , React.PropTypes.bool
+    ])
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(push(url)),
-    onSubmitForm: (evt) => {
-      evt.preventDefault()
-      dispatch(loadRepos())
-    },
-
-    dispatch,
+    changeRoute: (url) => dispatch(push(url))
+    , dispatch
   }
 }
 

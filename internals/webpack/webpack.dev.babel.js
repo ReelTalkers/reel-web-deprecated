@@ -2,14 +2,14 @@
  * DEVELOPMENT WEBPACK CONFIGURATION
  */
 
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // PostCSS plugins
-const cssnext = require('postcss-cssnext');
-const postcssFocus = require('postcss-focus');
-const postcssReporter = require('postcss-reporter');
+const cssnext = require('postcss-cssnext')
+const postcssFocus = require('postcss-focus')
+const postcssReporter = require('postcss-reporter')
 
 module.exports = require('./webpack.base.babel')({
   // Add hot reloading in development
@@ -56,4 +56,4 @@ module.exports = require('./webpack.base.babel')({
 
   // Emit a source map for easier debugging
   devtool: 'inline-source-map',
-});
+})

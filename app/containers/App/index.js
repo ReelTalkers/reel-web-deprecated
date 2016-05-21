@@ -7,16 +7,13 @@
  */
 
 import React from 'react'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css'
 
-import Img from 'components/Img'
 import Footer from 'components/Footer'
-import Banner from './banner-metal.jpg'
-import A from 'components/A'
 
 import styles from './styles.css'
 
@@ -31,8 +28,8 @@ function App(props) {
   )
 }
 
-App.propTypes = {
-  children: React.PropTypes.node,
-}
+App.propTypes =
+  { children: React.PropTypes.node
+  }
 
 export default App

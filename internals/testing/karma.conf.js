@@ -1,5 +1,5 @@
-const webpackConfig = require('../webpack/webpack.test.babel');
-const path = require('path');
+const webpackConfig = require('../webpack/webpack.test.babel')
+const path = require('path')
 
 module.exports = (config) => {
   config.set({
@@ -50,5 +50,5 @@ module.exports = (config) => {
       ],
     },
 
-  });
-};
+  })
+}

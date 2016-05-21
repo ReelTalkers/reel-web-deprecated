@@ -32,12 +32,12 @@ function Button(props) {
   )
 }
 
-Button.propTypes = {
-  className: PropTypes.string,
-  handleRoute: PropTypes.func,
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
-}
+Button.propTypes =
+  { className: PropTypes.string
+  , handleRoute: PropTypes.func
+  , href: PropTypes.string
+  , onClick: PropTypes.func
+  , children: PropTypes.node.isRequired
+  }
 
 export default Button
