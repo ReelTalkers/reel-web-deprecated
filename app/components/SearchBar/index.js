@@ -16,6 +16,7 @@ function SearchBar(props) {
         hintText="Search..."
         dataSource={props.results}
         onUpdateInput={props.onUpdateInput}
+        {...props}
       />
     </div>
   )

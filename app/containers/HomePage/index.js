@@ -5,28 +5,31 @@
  */
 
 import React from 'react'
+import Relay from 'react-relay'
+Relay.injectNetworkLayer(
+  new Relay.DefaultNetworkLayer('http://localhost:8000/graphql')
+)
+
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import shouldPureComponentUpdate from 'react-pure-render/function'
+import ViewerRoute from '../../routes/ViewerRoute'
 
 import { createSelector } from 'reselect'
 
 import {
   selectRepos,
   selectLoading,
-  selectError,
+  selectError
 } from 'containers/App/selectors'
 
 import {
-  selectUsername,
+  selectUsername
 } from './selectors'
 
-import List from 'components/List'
-import ListItem from 'components/ListItem'
-import LoadingIndicator from 'components/LoadingIndicator'
-import SearchBar from 'components/SearchBar'
+import BrowsePage from 'containers/BrowsePage'
 
-import styles from './styles.css'
+// import styles from './styles.css'
 
 export class HomePage extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
@@ -41,32 +44,11 @@ export class HomePage extends React.Component {
   }
 
   render() {
-    let mainContent = null
-
-    // Show a loading indicator when we're loading
-    if (this.props.loading) {
-      mainContent = (<List component={LoadingIndicator} />)
-
-    // Show an error if there is one
-    } else if (this.props.error !== false) {
-      const ErrorComponent = () => (
-        <ListItem content={'Something went wrong, please try again!'} />
-      )
-      mainContent = (<List component={ErrorComponent} />)
-    }
-
     return (
-      <article>
-        <section>
-          <SearchBar
-            results={[]}
-            onUpdateInput={() => {}}
-          />
-        </section>
-        <section>
-          {mainContent}
-        </section>
-      </article>
+      <Relay.RootContainer
+        Component={BrowsePage}
+        route={new ViewerRoute()}
+      />
     )
   }
 }
