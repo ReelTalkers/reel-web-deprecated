@@ -1,8 +1,12 @@
 .browseHeader {
-
+  border-bottom: 2px solid #F1F2F2;
 }
 
 .logo {
   width: 60px;
   height: 60px;
+}
+
+.userDropdown {
+  color: #D0AA56;
 }

@@ -19,7 +19,7 @@ function BrowseHeader(props) {
       <Header>
         <Logo className={styles.logo} />
         <UniversalSearch viewer={props.viewer} />
-        <div>gziegan</div>
+        <div className={styles.userDropdown}>gziegan</div>
       </Header>
     </div>
   )

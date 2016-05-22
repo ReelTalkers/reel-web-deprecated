@@ -40,10 +40,14 @@ function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
+import lolomoReducer from 'containers/Lolomo/reducer'
+import lolomoRowReducer from 'containers/LolomoRow/reducer'
 export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
+    lolomo: lolomoReducer,
+    lolomoRow: lolomoRowReducer,
     ...asyncReducers,
   })
 }
