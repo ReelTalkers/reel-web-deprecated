@@ -6,7 +6,7 @@
 
 import
 { DEFAULT_ACTION
-  , SHOW_JAWBONE
+  , TOGGLE_JAWBONE
 } from './constants'
 
 export function defaultAction() {
@@ -15,9 +15,10 @@ export function defaultAction() {
   }
 }
 
-export function showJawbone(showId) {
+export function toggleJawbone(showId, rowId) {
   return {
-    type: SHOW_JAWBONE
+    type: TOGGLE_JAWBONE
     , showId
+    , rowId
   }
 }

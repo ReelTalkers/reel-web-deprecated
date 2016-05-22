@@ -13,9 +13,7 @@ function TitleCard(props) {
   return (
     <div
       className={styles.titleCard}
-      onClick={(e) => {
-        props.onClick(e, props.id)
-      }}
+      onClick={props.onClick}
     >
       <Img className={styles.poster} src={props.poster} alt={props.title} />
     </div>

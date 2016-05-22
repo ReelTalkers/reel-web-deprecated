@@ -32,7 +32,7 @@ class Jawbone extends React.Component {
     const { show } = this.props
     return (
       <div className={styles.jawbone}>
-        <Img className={styles.poster} />
+        <Img className={styles.poster} src={show.poster} alt={show.title} />
         <div className={styles.infoPanel}>
           <H1>{show.title}</H1>
           <Tabs>
@@ -61,8 +61,15 @@ export default Relay.createContainer(Jawbone, {
     show: () => Relay.QL`
       fragment on Show {
         title
-        banner
+        poster
         plot
+        cast(first: 20) {
+          edges {
+            node {
+              fullName
+            }
+          }
+        }
       }
     `
   }

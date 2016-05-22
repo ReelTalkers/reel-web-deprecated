@@ -8,7 +8,8 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import { connect } from 'react-redux'
-import { showJawbone } from '../Lolomo/actions';
+
+import Jawbone from 'containers/Jawbone'
 
 import H1 from 'components/H1'
 import Slider from 'components/Slider'
@@ -18,26 +19,22 @@ import TitleCard from 'components/TitleCard'
 import styles from './styles.css'
 
 class LolomoRow extends React.Component {
-
-  handleTitleCardClick = (e, showId) => {
-    console.log(showId)
-  }
-
   renderSliderItem(show) {
+    const { id } = this.props
     return (
       <SliderItem key={show.id}>
         <TitleCard
           id={show.id}
           title={show.title}
           poster={show.poster}
-          onClick={this.handleTitleCardClick}
+          onClick={(evt) => this.props.onShowClick(evt, show.id, id)}
         />
       </SliderItem>
     )
   }
 
   render() {
-    const { shows, name } = this.props
+    const { shows, name, showJawbone, selectedShow } = this.props
     return (
       <div className={styles.lolomoRow}>
         <H1 className={styles.rowHeader}>{name}</H1>
@@ -48,6 +45,11 @@ class LolomoRow extends React.Component {
             ))}
           </Slider>
         </div>
+        {showJawbone &&
+          <Jawbone
+            show={selectedShow}
+          />
+        }
       </div>
     )
   }
@@ -64,6 +66,11 @@ export default Relay.createContainer(LolomoRow, {
             poster
           }
         }
+      }
+    `
+    , selectedShow: () => Relay.QL`
+      fragment on Show {
+        ${Jawbone.getFragment('show')}
       }
     `
   }

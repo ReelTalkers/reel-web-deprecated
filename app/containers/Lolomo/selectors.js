@@ -1,9 +1,13 @@
 import { createSelector } from 'reselect'
 
-const selectLolomo = () => createSelector(
+const selectLolomo = () => (state) => state.get('lolomo')
 
+const selectJawbone = () => createSelector(
+  selectLolomo(),
+  (state) => state.get('jawbone')
 )
 
 export {
   selectLolomo,
+  selectJawbone
 }
