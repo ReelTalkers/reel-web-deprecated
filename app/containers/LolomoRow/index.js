@@ -45,7 +45,7 @@ class LolomoRow extends React.Component {
             ))}
           </Slider>
         </div>
-        {showJawbone &&
+        {showJawbone && selectedShow &&
           <Jawbone
             show={selectedShow}
           />
