@@ -1,0 +1,10 @@
+.titleCard {
+  border: 1px solid #a8a8a8;
+  box-shadow: 0 0 1em #afafaf;
+  margin: 0 5px 0 5px;
+}
+
+.poster {
+  width: 150px;
+  height: 200px;
+}

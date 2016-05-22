@@ -1,0 +1,15 @@
+.jawbone {
+  display: flex;
+  justify-content: space-between;
+}
+
+.poster {
+  max-width: 200px;
+}
+
+headline: {
+   font-size: 24px;
+   padding-top: 16px;
+   margin-bottom: 12px;
+   font-weight: 400px;
+ }
