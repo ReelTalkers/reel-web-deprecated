@@ -1,6 +1,11 @@
 .lolomoRow {
   display: flex;
+  flex-direction: column;
+  margin: 40px 0 40px 0;
+}
+
+.row {
+  display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 0 40px 0;
 }

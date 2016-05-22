@@ -22,9 +22,9 @@ class Lolomo extends React.Component {
     const { viewer: {topPicks, comedy, romance} } = this.props
     return (
       <div className={styles.lolomo}>
-        <LolomoRow shows={topPicks} />
-        <LolomoRow shows={comedy} />
-        <LolomoRow shows={romance} />
+        <LolomoRow shows={topPicks} name="Top Picks" />
+        <LolomoRow shows={comedy} name="Comedy" />
+        <LolomoRow shows={romance} name="Romance" />
       </div>
     )
   }
