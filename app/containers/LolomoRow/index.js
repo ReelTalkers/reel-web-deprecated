@@ -8,6 +8,7 @@ import React from 'react'
 import Relay from 'react-relay'
 
 import { connect } from 'react-redux'
+import { showJawbone } from '../Lolomo/actions';
 
 import H1 from 'components/H1'
 import Slider from 'components/Slider'
@@ -18,10 +19,19 @@ import styles from './styles.css'
 
 class LolomoRow extends React.Component {
 
+  handleTitleCardClick = (e, showId) => {
+    console.log(showId)
+  }
+
   renderSliderItem(show) {
     return (
       <SliderItem key={show.id}>
-        <TitleCard title={show.title} poster={show.poster} />
+        <TitleCard
+          id={show.id}
+          title={show.title}
+          poster={show.poster}
+          onClick={this.handleTitleCardClick}
+        />
       </SliderItem>
     )
   }

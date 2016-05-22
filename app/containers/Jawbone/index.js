@@ -10,7 +10,9 @@ import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Slider from 'material-ui/Slider'
+
 import { connect } from 'react-redux'
+
 
 import Img from 'components/Img'
 import H1 from 'components/H1'
