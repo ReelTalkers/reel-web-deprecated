@@ -8,7 +8,7 @@ import React from 'react'
 import Relay from 'react-relay'
 import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
-import { Tabs, Tab } from 'material-ui/Tabs'
+import { Tabs, Tab } from 'components/Tabs'
 
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'

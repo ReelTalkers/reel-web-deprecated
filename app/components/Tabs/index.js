@@ -5,22 +5,17 @@
 */
 
 import React from 'react'
-import { Tabs, Tab } from 'material-ui/Tabs'
+import { Tabs, Tab as MaterialTab } from 'material-ui/Tabs'
 
 import styles from './styles.css'
 
 function ReelTabs(props) {
+  const { children, ...attributes } = props
   return (
-    <Tabs {...props}>
-      {props.children}
+    <Tabs className={styles.tabs} {...attributes}>
+      {children}
     </Tabs>
     )
 }
 
-function ReelTab(props) {
-  return (
-    <Tab {...props} />
-  )
-}
-
-export default { Tabs: ReelTabs, Tab: ReelTab }
+module.exports = { Tabs: ReelTabs, Tab: MaterialTab }
