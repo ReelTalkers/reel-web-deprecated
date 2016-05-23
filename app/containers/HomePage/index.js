@@ -29,7 +29,9 @@ import {
 
 import BrowsePage from 'containers/BrowsePage'
 
-// import styles from './styles.css'
+import Loading from './Loading'
+
+import styles from './styles.css'
 
 export class HomePage extends React.Component {
   shouldComponentUpdate = shouldPureComponentUpdate
@@ -48,6 +50,11 @@ export class HomePage extends React.Component {
       <Relay.RootContainer
         Component={BrowsePage}
         route={new ViewerRoute()}
+        renderLoading={() => (
+          <div className={styles.loading}>
+            <Loading />
+          </div>
+        )}
       />
     )
   }

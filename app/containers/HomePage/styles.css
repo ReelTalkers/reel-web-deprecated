@@ -40,3 +40,10 @@ label {
   color: black;
   margin-left: 0.4em;
 }
+
+.loading {
+  height: calc(100vh - .2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
