@@ -1,10 +1,16 @@
 .jawbone {
   display: flex;
-  justify-content: space-between;
+}
+
+.infoPanel {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 5px 76px 86px;
 }
 
 .poster {
-  max-width: 200px;
+  width: 384px;
+  height: 546px;
 }
 
 .headline {
@@ -13,3 +19,9 @@
    margin-bottom: 12px;
    font-weight: 400px;
  }
+
+.title {
+  font-weight: 500;
+  font-size: 48px;
+  color: #222426;
+}

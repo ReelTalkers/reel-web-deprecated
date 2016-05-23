@@ -34,7 +34,7 @@ class Jawbone extends React.Component {
       <div className={styles.jawbone}>
         <Img className={styles.poster} src={show.poster} alt={show.title} />
         <div className={styles.infoPanel}>
-          <H1>{show.title}</H1>
+          <H1 className={styles.title}>{show.title}</H1>
           <Tabs>
             <Tab className={styles.headline} label="Overview">
               <p>{show.plot}</p>
