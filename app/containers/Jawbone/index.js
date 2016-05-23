@@ -9,10 +9,12 @@ import Relay from 'react-relay'
 import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import Slider from 'material-ui/Slider'
 
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 
+import { selectTab } from './selectors'
+import { changeSelectedTab } from './actions'
 
 import Img from 'components/Img'
 import H1 from 'components/H1'
@@ -29,7 +31,7 @@ class Jawbone extends React.Component {
   }
 
   render() {
-    const { show } = this.props
+    const { show, selectedTabIndex, onChangeTab } = this.props
     return (
       <div className={styles.jawbone}>
         <Img className={styles.poster} src={show.poster} alt={show.title} />
@@ -38,14 +40,21 @@ class Jawbone extends React.Component {
             <H1 className={styles.title}>{show.title}</H1>
             <H1 className={styles.closeButton}>X</H1>
           </div>
-          <Tabs>
-            <Tab className={styles.headline} label="Overview">
-              <p>{show.plot}</p>
+          <Tabs
+            value={selectedTabIndex}
+            onChange={onChangeTab}
+          >
+            <Tab label="Overview" value={0}>
+              <div>
+                <p>{show.plot}</p>
+              </div>
             </Tab>
-            <Tab className={styles.headline} label="Similar">
-              <p>Similar shows here</p>
+            <Tab label="Similar" value={1}>
+              <div>
+                <p>Similar shows here</p>
+              </div>
             </Tab>
-            <Tab className={styles.headline} label="Cast">
+            <Tab label="Cast" value={2}>
               <GridList cellHeight={20}>
                 {show.cast.edges.map(edge => (
                   this.renderCastMember(edge.node)
@@ -59,7 +68,7 @@ class Jawbone extends React.Component {
   }
 }
 
-export default Relay.createContainer(Jawbone, {
+const JawboneContainer = Relay.createContainer(Jawbone, {
   fragments: {
     show: () => Relay.QL`
       fragment on Show {
@@ -77,3 +86,16 @@ export default Relay.createContainer(Jawbone, {
     `
   }
 })
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onChangeTab: (value) => dispatch(changeSelectedTab(value))
+    , dispatch
+  }
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(createSelector(
+  selectTab()
+  , (selectedTabIndex) => ({ selectedTabIndex })
+), mapDispatchToProps)(JawboneContainer)

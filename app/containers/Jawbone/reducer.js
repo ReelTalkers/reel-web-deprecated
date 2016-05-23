@@ -13,7 +13,7 @@ const initialState = fromJS({
   selectedTabIndex: 0
 })
 
-function lolomoReducer(state = initialState, action) {
+function jawboneReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_TABS:
       return state.set('selectedTabIndex', action.tabIndex)
@@ -22,4 +22,4 @@ function lolomoReducer(state = initialState, action) {
   }
 }
 
-export default lolomoReducer
+export default jawboneReducer

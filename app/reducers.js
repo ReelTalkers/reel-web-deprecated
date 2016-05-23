@@ -42,12 +42,14 @@ function routeReducer(state = routeInitialState, action) {
  */
 import lolomoReducer from 'containers/Lolomo/reducer'
 import lolomoRowReducer from 'containers/LolomoRow/reducer'
+import jawboneReducer from 'containers/Jawbone/reducer'
 export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
     lolomo: lolomoReducer,
     lolomoRow: lolomoRowReducer,
+    jawbone: jawboneReducer,
     ...asyncReducers,
   })
 }

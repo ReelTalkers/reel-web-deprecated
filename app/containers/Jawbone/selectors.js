@@ -1,3 +1,7 @@
+/**
+ * Jawbone selectors
+ */
+
 import { createSelector } from 'reselect'
 
 const selectJawbone = () => (state) => state.get('jawbone')
@@ -8,5 +12,6 @@ const selectTab = () => createSelector(
 )
 
 export {
+  selectJawbone,
   selectTab
 }
