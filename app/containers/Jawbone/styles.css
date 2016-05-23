@@ -13,6 +13,20 @@
   height: 546px;
 }
 
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  align-self: flex-start;
+  font-weight: lighter;
+  font-size: 64px;
+  line-height: 0.3;
+  color: #222426;
+}
+
 .headline {
    font-size: 24px;
    padding-top: 16px;
