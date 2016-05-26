@@ -8,6 +8,16 @@
   padding: 30px 5px 76px 86px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.tabs {
+  width: 40%; /* temporary workaround */
+}
+
 .poster {
   width: 384px;
   height: 546px;

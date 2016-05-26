@@ -7,7 +7,7 @@
 import React from 'react'
 import Relay from 'react-relay'
 import GridList from 'material-ui/GridList'
-import { Tabs, Tab } from 'components/Tabs'
+import { Tabs, Tab } from 'material-ui/Tabs'
 import SwipeableViews from 'react-swipeable-views'
 
 import { connect } from 'react-redux'
@@ -39,14 +39,18 @@ class Jawbone extends React.Component {
             <H1 className={styles.title}>{show.title}</H1>
             <H1 className={styles.closeButton}>X</H1>
           </div>
-          <Tabs
-            value={selectedTabIndex}
-            onChange={onChangeTab}
-          >
-            <Tab label="Overview" value={0} />
-            <Tab label="Similar" value={1} />
-            <Tab label="Cast" value={2} />
-          </Tabs>
+          <div className={styles.header}>
+            <Tabs
+              value={selectedTabIndex}
+              onChange={onChangeTab}
+              className={styles.tabs}
+            >
+              <Tab label="Overview" value={0} />
+              <Tab label="Similar" value={1} />
+              <Tab label="Cast" value={2} />
+            </Tabs>
+            <div>Kanye</div>
+          </div>
           <SwipeableViews
             index={selectedTabIndex}
             onChangeIndex={onChangeTab}
