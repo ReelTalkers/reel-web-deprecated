@@ -19,6 +19,7 @@ import { changeSelectedTab } from './actions'
 import Img from 'components/Img'
 import H1 from 'components/H1'
 import CastMember from 'components/CastMember'
+import CastPreview from 'components/CastPreview'
 
 import styles from './styles.css'
 
@@ -49,7 +50,7 @@ class Jawbone extends React.Component {
               <Tab label="Similar" value={1} />
               <Tab label="Cast" value={2} />
             </Tabs>
-            <div>Kanye</div>
+            <CastPreview cast={show.cast.edges.map(edge => edge.node)} />
           </div>
           <SwipeableViews
             index={selectedTabIndex}
