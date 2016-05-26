@@ -56,10 +56,22 @@ class Jawbone extends React.Component {
             index={selectedTabIndex}
             onChangeIndex={onChangeTab}
           >
-            <div>
-              <p>{show.plot}</p>
+            <div className={styles.slide}>
+              <p>{show.fullPlot}</p>
+              <br />
+              <p>{`Director${show.directors.edges.length > 1 ? 's' : ''}: ${show.directors.edges.map(edge => edge.node.fullName).join(', ')}`}</p>
+              <p>{`Starring: ${show.cast.edges.map(edge => edge.node.fullName).join(', ')}`}</p>
+              <br />
+              <div className={styles.row}>
+                <span>🍅 100%</span>
+                <span className={styles.great}>Great</span>
+                <span>{show.genre}</span>
+                <span>{show.runtime}</span>
+                <span>{show.year}</span>
+                <span>{show.rating}</span>
+              </div>
             </div>
-            <div>
+            <div className={styles.slide}>
               <p>Similar shows here</p>
             </div>
             <div className={styles.slide}>
@@ -82,8 +94,19 @@ const JawboneContainer = Relay.createContainer(Jawbone, {
       fragment on Show {
         title
         poster
-        plot
+        fullPlot
+        genre
+        runtime
+        year
+        rating
         cast(first: 20) {
+          edges {
+            node {
+              fullName
+            }
+          }
+        }
+        directors(first: 10) {
           edges {
             node {
               fullName
