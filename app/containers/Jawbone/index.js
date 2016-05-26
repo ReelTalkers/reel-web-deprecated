@@ -9,6 +9,7 @@ import Relay from 'react-relay'
 import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
 import { Tabs, Tab } from 'components/Tabs'
+import SwipeableViews from 'react-swipeable-views'
 
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
@@ -44,24 +45,28 @@ class Jawbone extends React.Component {
             value={selectedTabIndex}
             onChange={onChangeTab}
           >
-            <Tab label="Overview" value={0}>
-              <div>
-                <p>{show.plot}</p>
-              </div>
-            </Tab>
-            <Tab label="Similar" value={1}>
-              <div>
-                <p>Similar shows here</p>
-              </div>
-            </Tab>
-            <Tab label="Cast" value={2}>
+            <Tab label="Overview" value={0} />
+            <Tab label="Similar" value={1} />
+            <Tab label="Cast" value={2} />
+          </Tabs>
+          <SwipeableViews
+            index={selectedTabIndex}
+            onChangeIndex={onChangeTab}
+          >
+            <div>
+              <p>{show.plot}</p>
+            </div>
+            <div style={styles.slide}>
+              <p>Similar shows here</p>
+            </div>
+            <div style={styles.slide}>
               <GridList cellHeight={20}>
                 {show.cast.edges.map(edge => (
                   this.renderCastMember(edge.node)
                 ))}
               </GridList>
-            </Tab>
-          </Tabs>
+            </div>
+          </SwipeableViews>
         </div>
       </div>
     )
