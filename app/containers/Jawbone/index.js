@@ -20,6 +20,7 @@ import Img from 'components/Img'
 import H1 from 'components/H1'
 import CastMember from 'components/CastMember'
 import CastPreview from 'components/CastPreview'
+import ShowOverview from 'components/ShowOverview'
 
 import styles from './styles.css'
 
@@ -57,19 +58,7 @@ class Jawbone extends React.Component {
             onChangeIndex={onChangeTab}
           >
             <div className={styles.slide}>
-              <p>{show.fullPlot}</p>
-              <br />
-              <p>{`Director${show.directors.edges.length > 1 ? 's' : ''}: ${show.directors.edges.map(edge => edge.node.fullName).join(', ')}`}</p>
-              <p>{`Starring: ${show.cast.edges.map(edge => edge.node.fullName).join(', ')}`}</p>
-              <br />
-              <div className={styles.row}>
-                <span>🍅 100%</span>
-                <span className={styles.great}>Great</span>
-                <span>{show.genre}</span>
-                <span>{show.runtime}</span>
-                <span>{show.year}</span>
-                <span>{show.rating}</span>
-              </div>
+              <ShowOverview show={show} />
             </div>
             <div className={styles.slide}>
               <p>Similar shows here</p>
