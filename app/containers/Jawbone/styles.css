@@ -40,9 +40,6 @@
   color: #222426;
 }
 
-.headline {
-  font-size: 24;
-  padding-top: 16;
-  margin-bottom: 12;
-  font-weight: 400;
+.slide {
+  padding: 10px;
 }

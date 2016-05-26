@@ -6,7 +6,6 @@
 
 import React from 'react'
 import Relay from 'react-relay'
-import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
 import { Tabs, Tab } from 'components/Tabs'
 import SwipeableViews from 'react-swipeable-views'
@@ -19,15 +18,14 @@ import { changeSelectedTab } from './actions'
 
 import Img from 'components/Img'
 import H1 from 'components/H1'
+import CastMember from 'components/CastMember'
 
 import styles from './styles.css'
 
 class Jawbone extends React.Component {
   renderCastMember(person) {
     return (
-      person.avatar ?
-        <Avatar src={person.avatar} /> :
-        <Avatar>{person.fullName[0]}</Avatar>
+      <CastMember avatar={person.avatar || null} name={person.fullName} role={person.role || null} />
     )
   }
 
@@ -56,11 +54,11 @@ class Jawbone extends React.Component {
             <div>
               <p>{show.plot}</p>
             </div>
-            <div style={styles.slide}>
+            <div>
               <p>Similar shows here</p>
             </div>
-            <div style={styles.slide}>
-              <GridList cellHeight={20}>
+            <div className={styles.slide}>
+              <GridList cellHeight={50}>
                 {show.cast.edges.map(edge => (
                   this.renderCastMember(edge.node)
                 ))}
