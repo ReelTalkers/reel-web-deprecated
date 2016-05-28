@@ -7,6 +7,8 @@
  */
 
 import React from 'react'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
@@ -17,9 +19,31 @@ import Footer from 'components/Footer'
 
 import styles from './styles.css'
 
+import {
+cyan500, cyan700,
+grey100, grey300, grey400, grey500,
+pinkA200,
+white, darkBlack, fullBlack,
+} from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator';
+
+const reelTheme = getMuiTheme({
+  palette: {
+    textColor: '#222426',
+    alternateTextColor: '#d8d8d8',
+    primary1Color: white,
+    primary2Color: '#fdd90c',
+    primary3Color: grey400,
+    accent1Color: '#fdd90c',
+  },
+  appBar: {
+    height: 50,
+  },
+})
+
 function App(props) {
   return (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <MuiThemeProvider muiTheme={reelTheme}>
       <div className={styles.wrapper}>
         {props.children}
         <Footer />

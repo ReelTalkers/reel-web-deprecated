@@ -24,8 +24,8 @@ import styles from './styles.css'
 class Lolomo extends React.Component {
 
   handleShowClick = (evt, showId, rowId) => {
-    this.props.relay.setVariables({ selectedShowId: showId, hasSelectedShow: true }, () => {
-      this.props.onToggleJawbone(evt, showId, rowId)
+    this.props.relay.setVariables({ selectedShowId: showId, hasSelectedShow: true }, ({ done}) => {
+      done && this.props.onToggleJawbone(evt, showId, rowId)
     })
   }
 

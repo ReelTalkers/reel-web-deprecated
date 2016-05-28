@@ -1,0 +1,14 @@
+.showOverview {
+
+}
+
+.row {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.great {
+  color: green;
+}

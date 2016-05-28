@@ -1,0 +1,8 @@
+.castMember {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  padding-left: 10px;
+}

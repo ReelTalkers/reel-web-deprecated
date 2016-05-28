@@ -6,64 +6,99 @@
 
 import React from 'react'
 import Relay from 'react-relay'
-import Avatar from 'material-ui/Avatar'
 import GridList from 'material-ui/GridList'
 import { Tabs, Tab } from 'material-ui/Tabs'
-import Slider from 'material-ui/Slider'
+import SwipeableViews from 'react-swipeable-views'
 
 import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 
+import { selectTab } from './selectors'
+import { changeSelectedTab } from './actions'
 
 import Img from 'components/Img'
 import H1 from 'components/H1'
+import CastMember from 'components/CastMember'
+import CastPreview from 'components/CastPreview'
+import ShowOverview from 'components/ShowOverview'
+import ShowSlider from 'components/ShowSlider'
 
 import styles from './styles.css'
 
 class Jawbone extends React.Component {
   renderCastMember(person) {
     return (
-      person.avatar ?
-        <Avatar src={person.avatar} /> :
-        <Avatar>{person.fullName[0]}</Avatar>
+      <CastMember avatar={person.avatar || null} name={person.fullName} role={person.role || null} />
     )
   }
 
   render() {
-    const { show } = this.props
+    const { show, selectedTabIndex, onChangeTab } = this.props
     return (
       <div className={styles.jawbone}>
         <Img className={styles.poster} src={show.poster} alt={show.title} />
         <div className={styles.infoPanel}>
-          <H1>{show.title}</H1>
-          <Tabs>
-            <Tab className={styles.headline} label="Overview">
-              <p>{show.plot}</p>
-            </Tab>
-            <Tab className={styles.headline} label="Similar">
-              <p>Similar shows here</p>
-            </Tab>
-            <Tab className={styles.headline} label="Cast">
-              <GridList cellHeight={20}>
+          <div className={styles.titleBar}>
+            <H1 className={styles.title}>{show.title}</H1>
+            <H1 className={styles.closeButton}>X</H1>
+          </div>
+          <div className={styles.header}>
+            <Tabs
+              value={selectedTabIndex}
+              onChange={onChangeTab}
+              className={styles.tabs}
+            >
+              <Tab label="Overview" value={0} />
+              <Tab label="Similar" value={1} />
+              <Tab label="Cast" value={2} />
+            </Tabs>
+            <CastPreview cast={show.cast.edges.map(edge => edge.node)} />
+          </div>
+          <SwipeableViews
+            index={selectedTabIndex}
+            onChangeIndex={onChangeTab}
+          >
+            <div className={styles.slide}>
+              <ShowOverview show={show} />
+            </div>
+            <div className={styles.slide}>
+              <ShowSlider shows={Array.from(new Array(5), () => show)} showRatings />
+            </div>
+            <div className={styles.slide}>
+              <GridList cellHeight={50}>
                 {show.cast.edges.map(edge => (
                   this.renderCastMember(edge.node)
                 ))}
               </GridList>
-            </Tab>
-          </Tabs>
+            </div>
+          </SwipeableViews>
         </div>
       </div>
     )
   }
 }
 
-export default Relay.createContainer(Jawbone, {
+const JawboneContainer = Relay.createContainer(Jawbone, {
   fragments: {
     show: () => Relay.QL`
       fragment on Show {
+        id
         title
         poster
-        plot
+        fullPlot
+        genre
+        runtime
+        year
+        rating
+        metacritic
         cast(first: 20) {
+          edges {
+            node {
+              fullName
+            }
+          }
+        }
+        directors(first: 10) {
           edges {
             node {
               fullName
@@ -74,3 +109,16 @@ export default Relay.createContainer(Jawbone, {
     `
   }
 })
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onChangeTab: (value) => dispatch(changeSelectedTab(value))
+    , dispatch
+  }
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(createSelector(
+  selectTab()
+  , (selectedTabIndex) => ({ selectedTabIndex })
+), mapDispatchToProps)(JawboneContainer)
