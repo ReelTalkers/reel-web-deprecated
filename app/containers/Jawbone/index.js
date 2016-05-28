@@ -21,6 +21,7 @@ import H1 from 'components/H1'
 import CastMember from 'components/CastMember'
 import CastPreview from 'components/CastPreview'
 import ShowOverview from 'components/ShowOverview'
+import ShowSlider from 'components/ShowSlider'
 
 import styles from './styles.css'
 
@@ -61,7 +62,7 @@ class Jawbone extends React.Component {
               <ShowOverview show={show} />
             </div>
             <div className={styles.slide}>
-              <p>Similar shows here</p>
+              <ShowSlider shows={Array.from(new Array(5), () => show)} showRatings />
             </div>
             <div className={styles.slide}>
               <GridList cellHeight={50}>
@@ -81,6 +82,7 @@ const JawboneContainer = Relay.createContainer(Jawbone, {
   fragments: {
     show: () => Relay.QL`
       fragment on Show {
+        id
         title
         poster
         fullPlot
@@ -88,6 +90,7 @@ const JawboneContainer = Relay.createContainer(Jawbone, {
         runtime
         year
         rating
+        metacritic
         cast(first: 20) {
           edges {
             node {
