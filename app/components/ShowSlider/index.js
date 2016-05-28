@@ -12,16 +12,17 @@ import ShowRating from 'components/ShowRating'
 
 import styles from './styles.css'
 
-function renderSliderItem(show, id, showRating) {
+function renderSliderItem(show, key, props) {
+  const { id } = props
   return (
-    <SliderItem key={id}>
+    <SliderItem key={key}>
       <TitleCard
         id={show.id}
         title={show.title}
         poster={show.poster}
         onClick={(evt) => props.onShowClick(evt, show.id, id)}
       />
-    {showRating &&
+    {props.showRatings &&
       <ShowRating rating={show.metacritic} />
     }
     </SliderItem>
@@ -33,7 +34,7 @@ function ShowSlider(props) {
     <div className={styles.showSlider}>
       <Slider>
         {props.shows.map((show, index) => (
-          renderSliderItem(show, index, props.showRatings)
+          renderSliderItem(show, index, props)
         ))}
       </Slider>
     </div>
